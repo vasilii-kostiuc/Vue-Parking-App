@@ -11,6 +11,8 @@ import { RouterLink, RouterView } from "vue-router";
             <div
               class="inline-flex items-center justify-center bg-blue-600 w-6 h-6 text-center text-white rounded"
             >
+
+            
               P
             </div>
             myParking
