@@ -22,8 +22,10 @@ onBeforeUnmount(store.resetForm);
           autocomplete="name"
           required
         />
+        <ValidationError :errors="store.errors" field="Name" />
       </div>
  
+    
       <div class="flex flex-col gap-2 mb-4">
         <label for="email" class="required">Email</label>
         <input
@@ -35,6 +37,8 @@ onBeforeUnmount(store.resetForm);
           autocomplete="email"
           required
         />
+        <ValidationError :errors="store.errors" field="Email" />
+
       </div>
  
       <div class="flex flex-col gap-2 mb-4">
@@ -48,6 +52,8 @@ onBeforeUnmount(store.resetForm);
           autocomplete="new-password"
           required
         />
+        <ValidationError :errors="store.errors" field="Password" />
+
       </div>
  
       <div class="flex flex-col gap-2">

@@ -9,18 +9,31 @@ export const useRegister = defineStore("register", () => {
     confirmation: "",
   });
  
+  const errors = reactive({});
+
   function resetForm() {
     form.name = "";
     form.email = "";
     form.password = "";
     form.confirmation = "";
+
+    errors.value = {};
   }
  
   async function handleSubmit() {
-    return window.axios("api/Auth/register", form).then((response) => {
+    errors.value = {};
+
+    return window.axios.post("api/Auth/register", form).then((response) => {
       console.log(response.data);
+    }).catch(function (error) {
+      if (error.response.status === 400) {
+        errors.value = error.response.data.errors;
+      }    
+    }).finally(() => {
+      form.password = "";
+      form.confirmation = "";
     });
   }
  
-  return { form, resetForm, handleSubmit };
+  return { form, errors, resetForm, handleSubmit };
 });
