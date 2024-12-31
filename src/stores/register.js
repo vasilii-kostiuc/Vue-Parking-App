@@ -1,6 +1,10 @@
-import { reactive } from "vue";
 import { defineStore } from "pinia";
- 
+import { reactive, ref } from "vue";
+import { useAuth } from "@/stores/auth";
+
+const auth = useAuth();
+
+
 export const useRegister = defineStore("register", () => {
   const form = reactive({
     name: "",
@@ -10,6 +14,7 @@ export const useRegister = defineStore("register", () => {
   });
  
   const errors = reactive({});
+  const loading = ref(false);
 
   function resetForm() {
     form.name = "";
@@ -21,10 +26,16 @@ export const useRegister = defineStore("register", () => {
   }
  
   async function handleSubmit() {
+
+    if (loading.value) return;
+ 
+    loading.value = true;
+
     errors.value = {};
 
     return window.axios.post("api/Auth/register", form).then((response) => {
       console.log(response.data);
+      auth.login(response.data.accessToken)
     }).catch(function (error) {
       if (error.response.status === 400) {
         errors.value = error.response.data.errors;
@@ -35,5 +46,5 @@ export const useRegister = defineStore("register", () => {
     });
   }
  
-  return { form, errors, resetForm, handleSubmit };
+  return { form, errors, loading, resetForm, handleSubmit };
 });

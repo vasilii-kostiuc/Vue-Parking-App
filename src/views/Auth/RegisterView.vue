@@ -20,7 +20,8 @@ onBeforeUnmount(store.resetForm);
           type="text"
           class="form-input"
           autocomplete="name"
-          required
+          required          
+          :disabled="store.loading"
         />
         <ValidationError :errors="store.errors" field="Name" />
       </div>
@@ -36,6 +37,7 @@ onBeforeUnmount(store.resetForm);
           class="form-input"
           autocomplete="email"
           required
+          :disabled="store.loading"
         />
         <ValidationError :errors="store.errors" field="Email" />
 
@@ -51,6 +53,7 @@ onBeforeUnmount(store.resetForm);
           class="form-input"
           autocomplete="new-password"
           required
+          :disabled="store.loading"
         />
         <ValidationError :errors="store.errors" field="Password" />
 
@@ -68,14 +71,15 @@ onBeforeUnmount(store.resetForm);
           class="form-input"
           autocomplete="new-password"
           required
+          :disabled="store.loading"
         />
       </div>
  
       <div class="border-t h-[1px] my-6"></div>
  
       <div class="flex flex-col gap-2">
-        <button type="submit" class="btn btn-primary">Registhher</button>
+        <button type="submit" class="btn btn-primary"><SpinnerIcon v-show="store.loading" />Registhher</button>
       </div>
     </div>
   </form>
-</template>
+</template>npm 
