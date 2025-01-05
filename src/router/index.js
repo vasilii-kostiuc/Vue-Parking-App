@@ -48,6 +48,12 @@ const router = createRouter({
       beforeEnter: auth,
       component: () => import("@/views/Profile/EditView.vue"),
     },
+    {
+      path: "/vehicles/create",
+      name: "vehicles.create",
+      beforeEnter: auth,
+      component: () => import("@/views/Vehicles/CreateView.vue"),
+    },
   ],
 });
  
