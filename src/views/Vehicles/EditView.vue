@@ -1,16 +1,25 @@
 <script setup>
-import { onBeforeUnmount } from "vue";
+import { watchEffect, onBeforeUnmount } from "vue";
 import { useVehicle } from "@/stores/vehicle";
+import { useRoute } from "vue-router";
  
 const store = useVehicle();
+const route = useRoute();
  
 onBeforeUnmount(store.resetForm);
+ 
+watchEffect(async () => {
+  store.getVehicle({ id: route.params.id });
+});
 </script>
  
 <template>
-  <form @submit.prevent="store.storeVehicle" novalidate>
+  <form
+    @submit.prevent="store.updateVehicle({ id: route.params.id })"
+    novalidate
+  >
     <div class="flex flex-col mx-auto md:w-96 w-full">
-      <h1 class="text-2xl font-bold mb-4 text-center">Add vehicle</h1>
+      <h1 class="text-2xl font-bold mb-4 text-center">Edit vehicle</h1>
       <div class="flex flex-col gap-2 mb-4">
         <label for="plate_number" class="required">License plate</label>
         <input
@@ -21,7 +30,7 @@ onBeforeUnmount(store.resetForm);
           class="form-input plate"
           :disabled="store.loading"
         />
-        <ValidationError :errors="store.errors" field="PlateNumber" />
+        <ValidationError :errors="store.errors" field="plate_number" />
       </div>
       <div class="flex flex-col gap-2">
         <label for="description">Description</label>
@@ -46,7 +55,7 @@ onBeforeUnmount(store.resetForm);
           :disabled="store.loading"
         >
           <IconSpinner class="animate-spin" v-show="store.loading" />
-          Save vehicle
+          Update vehicle
         </button>
         <RouterLink :to="{ name: 'vehicles.index' }" class="btn btn-secondary">
           Cancel

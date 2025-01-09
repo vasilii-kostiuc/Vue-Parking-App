@@ -37,6 +37,12 @@ const router = createRouter({
       component: () => import("@/views/Vehicles/IndexView.vue"),
     },
     {
+      path: "/vehicles/:id/edit",
+      name: "vehicles.edit",
+      beforeEnter: auth,
+      component: () => import("@/views/Vehicles/EditView.vue"),
+    },
+    {
       path: "/login",
       name: "login",
       beforeEnter: guest,
