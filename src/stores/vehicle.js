@@ -43,7 +43,7 @@ export const useVehicle = defineStore("vehicle", () => {
     return window.axios
     .get("api/vehicle")
     .then((response)=>{
-      vehicles.value = response.data.data;
+      return vehicles.value = response.data.data;
     });
   }
 

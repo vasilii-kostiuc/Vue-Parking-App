@@ -4,6 +4,15 @@ import { useVehicle } from '@/stores/vehicle';
 
 const store = useVehicle();
 onMounted(()=>store.getVehicles())
+
+const deleteVehicle = (vehicle) => {
+        let deleteConfirmation = confirm("Are you sure you want to delete this vehicle?");
+        
+        if(deleteConfirmation){
+            store.deleteVehicle(vehicle)
+        }
+}
+
 </script>
 
 <template>
@@ -35,7 +44,7 @@ onMounted(()=>store.getVehicles())
         <div class="flex gap-1">
           <RouterLink :to="{ name: 'vehicles.edit', params: { id: vehicle.id } }" class="btn btn-secondary text-sm">Edit</RouterLink> 
           <button type="button"
-            @click="store.deleteVehicle(vehicle)"
+            @click="deleteVehicle(vehicle)"
             class="btn text-white bg-red-600 hover:bg-red-500 text-sm">
               X
             </button>
