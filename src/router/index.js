@@ -37,6 +37,12 @@ const router = createRouter({
       component: () => import("@/views/Vehicles/IndexView.vue"),
     },
     {
+      path: "/vehicles/:id/edit",
+      name: "vehicles.edit",
+      beforeEnter: auth,
+      component: () => import("@/views/Vehicles/EditView.vue"),
+    },
+    {
       path: "/login",
       name: "login",
       beforeEnter: guest,
@@ -53,6 +59,18 @@ const router = createRouter({
       name: "vehicles.create",
       beforeEnter: auth,
       component: () => import("@/views/Vehicles/CreateView.vue"),
+    },
+    {
+      path: "/parkings/active",
+      name: "parkings.active",
+      beforeEnter: auth,
+      component: () => import("@/views/Parkings/ActiveParkings.vue"),
+    },
+    {
+      path: "/parkings/new",
+      name: "parkings.create",
+      beforeEnter: auth,
+      component: () => import("@/views/Parkings/ParkingOrder.vue"),
     },
   ],
 });

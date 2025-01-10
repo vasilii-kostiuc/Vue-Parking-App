@@ -82,4 +82,4 @@ onBeforeUnmount(store.resetForm);
       </div>
     </div>
   </form>
-</template>npm 
+</template>
