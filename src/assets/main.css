@@ -8,11 +8,11 @@
     }
  
     .form-input {
-        @apply p-1 border bg-gray-100 disabled:opacity-50;
+        @apply p-1 border bg-gray-100 disabled:opacity-50 rounded;
     }
  
     .btn {
-        @apply inline-flex items-center gap-2 justify-center p-2 font-bold relative disabled:!opacity-50 disabled:!cursor-progress;
+        @apply inline-flex items-center gap-2 justify-center p-2 font-bold rounded relative disabled:!opacity-50 disabled:!cursor-progress;
     }
  
     .btn-primary {
@@ -40,5 +40,9 @@
    
     .plate {
         @apply font-mono font-bold uppercase;
+    }
+
+    .btn-danger {
+        @apply text-white bg-red-600 hover:bg-red-500;
     }
 }

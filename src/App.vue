@@ -1,10 +1,10 @@
 <script setup>
-import { RouterLink, RouterView } from "vue-router";
-import { useAuth } from "@/stores/auth";
- 
-const auth = useAuth();
+import { RouterLink, RouterView } from 'vue-router'
+import { useAuth } from '@/stores/auth'
+
+const auth = useAuth()
 </script>
- 
+
 <template>
   <header class="py-6 bg-gray-100 shadow">
     <div class="container md:px-2 px-4 mx-auto">
@@ -18,13 +18,16 @@ const auth = useAuth();
             </div>
             myParking
           </h2>
- 
+
           <template v-if="auth.check">
             <RouterLink class="router-link" :to="{ name: 'parkings.active' }">
               Parkings
             </RouterLink>
             <RouterLink class="router-link" :to="{ name: 'vehicles.index' }">
               Vehicles
+            </RouterLink>
+            <RouterLink class="router-link" :to="{ name: 'parkings.history' }">
+              History
             </RouterLink>
           </template>
           <template v-else>
@@ -52,7 +55,7 @@ const auth = useAuth();
       </nav>
     </div>
   </header>
- 
+
   <div class="container md:px-2 px-4 pt-8 md:pt-16 mx-auto">
     <RouterView />
   </div>
